@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web/constants/controllers.dart';
 import 'package:flutter_web/helpers/responsiveness.dart';
+import 'package:flutter_web/pages/clients/widgets/client_table.dart';
 import 'package:flutter_web/widgets/custom_text.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,14 @@ class ClientsPage extends StatelessWidget {
                   ),
                 )
               ],
-            ))
+            )),
+        Expanded(
+          child: ListView(
+            children: [
+              ClientTable(),
+            ],
+          ),
+        )
       ],
     );
   }

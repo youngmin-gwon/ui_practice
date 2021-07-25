@@ -1,16 +1,13 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_web/constants/style.dart';
 import 'package:flutter_web/widgets/custom_text.dart';
 
-/// Example without datasource
-class AvailableDrivers extends StatelessWidget {
-  const AvailableDrivers();
+class ClientTable extends StatelessWidget {
+  const ClientTable({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //setColumnSizeRatios(1, 2);
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       padding: const EdgeInsets.all(16),
@@ -32,7 +29,7 @@ class AvailableDrivers extends StatelessWidget {
             children: const [
               SizedBox(width: 10),
               CustomText(
-                text: "Available Drivers",
+                text: "Block Client",
                 color: lightGray,
                 fontWeight: FontWeight.bold,
               )
@@ -83,7 +80,7 @@ class AvailableDrivers extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 6),
                             child: CustomText(
-                              text: "Assign Delivery",
+                              text: "Available Delivery",
                               color: active.withOpacity(.7),
                               fontWeight: FontWeight.bold,
                             ))),
