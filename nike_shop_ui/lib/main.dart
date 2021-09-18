@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nike_shop_ui/presentation/home.dart';
+import 'package:nike_shop_ui/presentation_practice/home_practice.dart';
 
 void main() => runApp(const AppWidget());
 
@@ -14,6 +14,6 @@ class AppWidget extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.blue,
         ),
-        home: const HomePage());
+        home: const HomePracticePage());
   }
 }
