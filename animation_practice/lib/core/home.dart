@@ -1,3 +1,4 @@
+import 'package:animation_practice/practice/spring_practice.dart';
 import 'package:animation_practice/spring_animation/spring_challenge.dart';
 import 'package:animation_practice/staggered_animation/stagger_demo_page.dart';
 import 'package:flutter/material.dart';
@@ -26,10 +27,19 @@ class HomePage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => SpringChallenge(),
+                      builder: (context) => const SpringChallenge(),
                     ),
                   ),
                   child: const Text("Spring Animation"),
+                ),
+                const SizedBox(height: 12),
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const SpringPractice(),
+                    ),
+                  ),
+                  child: const Text("Spring Practice"),
                 ),
               ],
             ),
