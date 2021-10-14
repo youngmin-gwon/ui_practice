@@ -12,102 +12,56 @@ class SpringPractice extends StatefulWidget {
 
 class _SpringPracticeState extends State<SpringPractice>
     with SingleTickerProviderStateMixin {
-  final _springDescription =
-      const SpringDescription(mass: 1.0, stiffness: 500.0, damping: 15.0);
+  final _springDescription = const SpringDescription(
+    mass: 1.0,
+    stiffness: 500,
+    damping: 15,
+  );
 
-  late SpringSimulation _springSimX;
-  late SpringSimulation _springSimY;
+  late SpringPr _spring;
 
-  Offset _springPosition = Offset.zero;
-  Offset? _anchorPosition;
+  bool _isInitialized = false;
 
-  Offset _previousVelocity = Offset.zero;
-
-  Ticker? _ticker;
+  @override
+  void initState() {
+    super.initState();
+    _spring = SpringPr(
+      tickerProvider: this,
+      springDescription: _springDescription,
+    )..addListener(() {
+        setState(() {});
+      });
+  }
 
   void _onTapUp(TapUpDetails details) {
-    setState(() {
-      _anchorPosition = details.localPosition;
-      _endSpring();
-      _startSpring();
-    });
+    _spring
+      ..anchorPosition = details.localPosition
+      ..startSpring();
   }
 
   void _onPanUpdate(DragUpdateDetails details) {
-    setState(() {
-      _springPosition += details.delta;
-    });
+    _spring.springPosition += details.delta;
   }
 
   void _onPanStart(DragStartDetails details) {
-    _endSpring();
+    _spring.endSpring();
   }
 
   void _onPanEnd(DragEndDetails details) {
-    _startSpring();
-  }
-
-  void _startSpring() {
-    _springSimX = SpringSimulation(
-      _springDescription,
-      _springPosition.dx,
-      _anchorPosition!.dx,
-      _previousVelocity.dx,
-    );
-
-    _springSimY = SpringSimulation(
-      _springDescription,
-      _springPosition.dy,
-      _anchorPosition!.dy,
-      _previousVelocity.dy,
-    );
-
-    _ticker ??= createTicker(_onTick);
-
-    _ticker!.start();
-  }
-
-  void _onTick(Duration elapsedTime) {
-    final elapsedTimeFraction = elapsedTime.inMilliseconds / 1000.0;
-
-    setState(() {
-      _springPosition = Offset(
-        _springSimX.x(elapsedTimeFraction),
-        _springSimY.x(elapsedTimeFraction),
-      );
-
-      _previousVelocity = Offset(
-        _springSimX.dx(elapsedTimeFraction),
-        _springSimY.dx(elapsedTimeFraction),
-      );
-    });
-
-    if (_springSimX.isDone(elapsedTimeFraction) &&
-        _springSimY.isDone(elapsedTimeFraction)) {
-      _endSpring();
-    }
-  }
-
-  void _endSpring() {
-    _ticker?.stop();
+    _spring.startSpring();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_anchorPosition == null) {
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
-        // we only can look this up after first build, not before first build.
-
-        // RenderBox is the actual run-time representation of widget
-        final box = context.findRenderObject() as RenderBox?;
-        if (box != null && box.hasSize) {
-          setState(() {
-            _anchorPosition = box.size.center(Offset.zero);
-            _springPosition = _anchorPosition!;
-          });
+    if (!_isInitialized) {
+      WidgetsBinding.instance!.scheduleFrameCallback((_) {
+        final _box = context.findRenderObject() as RenderBox?;
+        if (_box != null && _box.hasSize) {
+          _isInitialized = true;
+          _spring.anchorPosition = _box.size.center(Offset.zero);
+          _spring.springPosition = _spring.anchorPosition;
         }
       });
-
       return const SizedBox();
     }
 
@@ -118,25 +72,124 @@ class _SpringPracticeState extends State<SpringPractice>
         onPanUpdate: _onPanUpdate,
         onPanStart: _onPanStart,
         onPanEnd: _onPanEnd,
-        child: Stack(
-          children: [
-            const SpidermanPracticeBackground(),
-            CustomPaint(
-              size: Size.infinite,
-              painter: WebPracticePainter(
-                anchorPosition: _anchorPosition!,
-                springPosition: _springPosition,
-              ),
+        child: Stack(children: [
+          const SpidermanPracticeBackground(),
+          CustomPaint(
+            size: Size.infinite,
+            painter: WebPracticePainter(
+              anchorPosition: _spring.anchorPosition,
+              springPosition: _spring.springPosition,
             ),
-            FractionalTranslation(
-              translation: const Offset(-0.5, -0.5),
-              child: Transform.translate(
-                  offset: _springPosition, child: const SpidermanDraggable()),
-            )
-          ],
-        ),
+          ),
+          FractionalTranslation(
+            translation: const Offset(-0.5, -0.5),
+            child: Transform.translate(
+              offset: _spring.springPosition,
+              child: const SpidermanPiece(),
+            ),
+          )
+        ]),
       ),
     );
+  }
+}
+
+class SpidermanPiece extends StatelessWidget {
+  const SpidermanPiece({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 64,
+      width: 64,
+      child: Image.asset(
+        "assets/spiderman.png",
+      ),
+    );
+  }
+}
+
+class SpringPr with ChangeNotifier {
+  SpringPr(
+      {required TickerProvider tickerProvider,
+      required SpringDescription springDescription})
+      : _springDescription = springDescription,
+        _tickerProvider = tickerProvider;
+
+  final SpringDescription _springDescription;
+  final TickerProvider _tickerProvider;
+
+  Ticker? _ticker;
+
+  late SpringSimulation _springSimX;
+  late SpringSimulation _springSimY;
+
+  Offset _anchorPosition = Offset.zero;
+
+  Offset get anchorPosition => _anchorPosition;
+  set anchorPosition(Offset newAnchorPosition) {
+    endSpring();
+    _anchorPosition = newAnchorPosition;
+
+    notifyListeners();
+  }
+
+  Offset _springPosition = Offset.zero;
+  Offset get springPosition => _springPosition;
+  set springPosition(Offset newSpringPosition) {
+    endSpring();
+    _springPosition = newSpringPosition;
+
+    notifyListeners();
+  }
+
+  Offset _previousVelocity = Offset.zero;
+
+  void startSpring() {
+    _springSimX = SpringSimulation(
+      _springDescription,
+      springPosition.dx,
+      anchorPosition.dx,
+      _previousVelocity.dx,
+    );
+
+    _springSimY = SpringSimulation(
+      _springDescription,
+      springPosition.dy,
+      anchorPosition.dy,
+      _previousVelocity.dy,
+    );
+
+    _ticker ??= _tickerProvider.createTicker(_onTick);
+
+    _ticker!.start();
+  }
+
+  void _onTick(Duration elapsedTime) {
+    final elapsedTimeFraction = elapsedTime.inMilliseconds / 1000.0;
+
+    _springPosition = Offset(
+      _springSimX.x(elapsedTimeFraction),
+      _springSimY.x(elapsedTimeFraction),
+    );
+
+    _previousVelocity = Offset(
+      _springSimX.dx(elapsedTimeFraction),
+      _springSimY.dx(elapsedTimeFraction),
+    );
+
+    if (_springSimX.isDone(elapsedTimeFraction) &&
+        _springSimY.isDone(elapsedTimeFraction)) {
+      endSpring();
+    }
+
+    notifyListeners();
+  }
+
+  void endSpring() {
+    _ticker?.stop();
   }
 }
 
@@ -158,21 +211,6 @@ class SpidermanPracticeBackground extends StatelessWidget {
   }
 }
 
-class SpidermanDraggable extends StatelessWidget {
-  const SpidermanDraggable({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 64,
-      height: 64,
-      child: Image.asset("assets/spiderman.png"),
-    );
-  }
-}
-
 class WebPracticePainter extends CustomPainter {
   const WebPracticePainter({
     required this.springPosition,
@@ -185,8 +223,8 @@ class WebPracticePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..strokeWidth = 2
       ..color = Colors.grey
+      ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
 
     canvas.drawLine(anchorPosition, springPosition, paint);
