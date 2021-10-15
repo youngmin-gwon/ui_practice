@@ -67,6 +67,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.12.2"
+  http_parser:
+    dependency: transitive
+    description:
+      name: http_parser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.4"
   lint:
     dependency: "direct dev"
     description:
@@ -102,6 +116,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.1"
+  random_user:
+    dependency: "direct main"
+    description:
+      name: random_user
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   simple_animations:
     dependency: "direct main"
     description:
