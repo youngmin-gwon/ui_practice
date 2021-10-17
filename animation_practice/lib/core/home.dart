@@ -1,6 +1,8 @@
 import 'package:animation_practice/face_pile/face_pile_animation.dart';
+import 'package:animation_practice/kinetic_poster_animation/kinetic_poster_example.dart';
 import 'package:animation_practice/page_indicator/page_indicator_example.dart';
-import 'package:animation_practice/practice/indicator_practice.dart';
+import 'package:animation_practice/practice/page_indicator/indicator_practice.dart';
+import 'package:animation_practice/practice/practice_home.dart';
 import 'package:animation_practice/spring_animation/spring_challenge.dart';
 import 'package:animation_practice/staggered_animation/stagger_demo_page.dart';
 import 'package:flutter/material.dart';
@@ -56,10 +58,24 @@ class HomePage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const IndicatorPracticePage(),
+                      builder: (context) => const KineticPosterExamplePage(),
                     ),
                   ),
-                  child: const Text("Indicator Practice page"),
+                  child: const Text("Kinetic poster example"),
+                ),
+                const SizedBox(height: 12),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                      Colors.red,
+                    ),
+                  ),
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const PracticeHomePage(),
+                    ),
+                  ),
+                  child: const Text("Practice Page"),
                 ),
               ],
             ),
