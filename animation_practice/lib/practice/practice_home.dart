@@ -1,3 +1,4 @@
+import 'package:animation_practice/practice/face_pile/face_pile_practice.dart';
 import 'package:animation_practice/practice/kinetic_poster/kinetic_poster_practice.dart';
 import 'package:animation_practice/practice/page_indicator/indicator_practice.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class PracticeHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Practice Repository"),
+        title: const Text("Practice Repository"),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -33,6 +34,14 @@ class PracticeHomePage extends StatelessWidget {
                     ),
                   ),
                   child: const Text("Kinetic Poster Animation"),
+                ),
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const FacePilePractice(),
+                    ),
+                  ),
+                  child: const Text("Face Pile Animation"),
                 ),
               ],
             ),
