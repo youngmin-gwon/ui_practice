@@ -1,7 +1,7 @@
+import 'package:animation_practice/cli_ui/cli_ui.dart';
 import 'package:animation_practice/face_pile/face_pile_animation.dart';
 import 'package:animation_practice/kinetic_poster_animation/kinetic_poster_example.dart';
 import 'package:animation_practice/page_indicator/page_indicator_example.dart';
-import 'package:animation_practice/practice/page_indicator/indicator_practice.dart';
 import 'package:animation_practice/practice/practice_home.dart';
 import 'package:animation_practice/spring_animation/spring_challenge.dart';
 import 'package:animation_practice/staggered_animation/stagger_demo_page.dart';
@@ -62,6 +62,15 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   child: const Text("Kinetic poster example"),
+                ),
+                const SizedBox(height: 12),
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const CommandLinePage(),
+                    ),
+                  ),
+                  child: const Text("CLI-styled"),
                 ),
                 const SizedBox(height: 12),
                 ElevatedButton(
