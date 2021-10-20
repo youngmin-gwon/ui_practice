@@ -132,6 +132,7 @@ class _CommandLinePageState extends State<CommandLinePage> {
                                   horizontal: 10,
                                   vertical: 8,
                                 ),
+                                // Here
                                 child: TypeWriter(
                                   prefixText: ">",
                                   prefixTextStyle: const TextStyle(
