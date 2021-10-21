@@ -33,6 +33,52 @@ class _BalloonInitialPageState extends State<BalloonInitialPage> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
               ),
             ),
+            if (_currentState == BallonState.end)
+              Expanded(
+                flex: 2,
+                child: TweenAnimationBuilder<double>(
+                  tween: Tween<double>(
+                    begin: 0.0,
+                    end: 1.0,
+                  ),
+                  onEnd: () {
+                    setState(() {
+                      _currentState = BallonState.end;
+                    });
+                  },
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeOutCubic,
+                  builder: (_, value, child) {
+                    return Opacity(
+                      opacity: value,
+                      child: child,
+                    );
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        "uploading files",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 17,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Expanded(
+                        child: FittedBox(
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 20.0),
+                            child: ProgressCount(),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             if (_currentState != BallonState.end)
               Expanded(
                 flex: 2,
@@ -118,5 +164,14 @@ class _BalloonInitialPageState extends State<BalloonInitialPage> {
         ),
       ),
     );
+  }
+}
+
+class ProgressCount extends StatelessWidget {
+  const ProgressCount({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
