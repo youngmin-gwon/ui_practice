@@ -1,4 +1,5 @@
 import 'package:animation_practice/balloon_animation/balloon_page.dart';
+import 'package:animation_practice/celebration_animation/new_year_celebration_page.dart';
 import 'package:animation_practice/cli_ui/cli_ui.dart';
 import 'package:animation_practice/face_pile/face_pile_animation.dart';
 import 'package:animation_practice/kinetic_poster_animation/kinetic_poster_example.dart';
@@ -81,6 +82,14 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   child: const Text("Balloon Animation"),
+                ),
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => NewYearCelebrationScreen(),
+                    ),
+                  ),
+                  child: const Text("New Year Celebration Animation"),
                 ),
                 const SizedBox(height: 12),
                 ElevatedButton(
