@@ -1,3 +1,4 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
@@ -13,8 +14,8 @@ class NewYearCelebrationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: TimeLapse(
-        overrideStartDateTime: DateTime.parse("2021-12-31 23:59:49"),
-        doTick: false,
+        overrideStartDateTime: DateTime.parse("2021-12-31 20:59:51"),
+        doTick: true,
         dateTimeBuilder: (DateTime currentTime) {
           return NewYearsCountDownPage(
             currentTime: currentTime,
@@ -125,7 +126,18 @@ class NewYearsCountDownPage extends StatefulWidget {
 }
 
 class _NewYearsCountDownPageState extends State<NewYearsCountDownPage> {
+  final _newYearDateTime = DateTime.parse("2022-01-01 00:00:00");
   final DateFormat _timeFormat = DateFormat("h:mm:ss a");
+
+  late ConfettiController _fireworksController;
+
+  @override
+  void initState() {
+    super.initState();
+    _fireworksController = ConfettiController(
+      duration: const Duration(seconds: 1),
+    )..play();
+  }
 
   EnvironmentMode get envMode {
     final hours = widget.currentTime.hour;
@@ -143,39 +155,218 @@ class _NewYearsCountDownPageState extends State<NewYearsCountDownPage> {
 
   @override
   Widget build(BuildContext context) {
+    final secondsUntilNewYear =
+        (_newYearDateTime.difference(widget.currentTime).inMilliseconds / 1000)
+            .ceil();
     return Stack(
       children: [
         LandScape(
           mode: envMode,
           time: _timeFormat.format(widget.currentTime),
           year: "${widget.currentTime.year}",
+          fireworks: Align(
+            alignment: const Alignment(0.0, -0.5),
+            child: ConfettiWidget(
+              confettiController: _fireworksController,
+              displayTarget: true,
+              blastDirectionality: BlastDirectionality.explosive,
+              colors: [Colors.red],
+              minimumSize: Size(1, 1),
+              maximumSize: Size(5, 5),
+              minBlastForce: 0.001,
+              maxBlastForce: 0.0011,
+              gravity: 0.1,
+              particleDrag: 0.1,
+              numberOfParticles: 35,
+              emissionFrequency: 0.0000001,
+              shouldLoop: false,
+            ),
+          ),
         ),
-        CountDownText(),
+        CountDownText(
+          secondsToNewYear: secondsUntilNewYear,
+        ),
+        HappyNewYearText(
+          secondsToNewYear: secondsUntilNewYear,
+        ),
       ],
     );
   }
 }
 
+// TODO: add count down effect
 class CountDownText extends StatefulWidget {
-  const CountDownText({Key? key}) : super(key: key);
+  const CountDownText({
+    Key? key,
+    this.secondsToNewYear,
+  }) : super(key: key);
+
+  final int? secondsToNewYear;
 
   @override
   _CountDownTextState createState() => _CountDownTextState();
 }
 
-class _CountDownTextState extends State<CountDownText> {
+class _CountDownTextState extends State<CountDownText>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _showNumberController;
+  late Interval _opacity;
+  late Interval _scale;
+  late int? _displayNumber;
+
+  @override
+  void initState() {
+    super.initState();
+    _showNumberController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    _opacity = const Interval(0.0, 0.4);
+    _scale = const Interval(0.0, 0.5, curve: Curves.elasticOut);
+
+    _displayNumber = widget.secondsToNewYear;
+    if (_isCountingDown()) {
+      _showNumberController.forward();
+    }
+  }
+
+  @override
+  void didUpdateWidget(CountDownText oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.secondsToNewYear != oldWidget.secondsToNewYear) {
+      _displayNumber = widget.secondsToNewYear;
+      if (_isCountingDown()) {
+        _showNumberController.forward(from: 0.0);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _showNumberController.dispose();
+    super.dispose();
+  }
+
+  bool _isCountingDown() =>
+      widget.secondsToNewYear != null &&
+      (widget.secondsToNewYear! <= 9 && widget.secondsToNewYear! > 0);
+
   @override
   Widget build(BuildContext context) {
+    if (!_isCountingDown()) {
+      return const SizedBox();
+    }
+
     return Align(
-      alignment: Alignment(0.0, -0.3),
-      child: Text(
-        "9",
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 240,
+      alignment: const Alignment(0.0, -0.3),
+      child: Transform.scale(
+        scale: _scale.transform(_showNumberController.value),
+        child: Opacity(
+          opacity: _opacity.transform(_showNumberController.value),
+          child: Text(
+            "$_displayNumber",
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 240,
+            ),
+          ),
         ),
       ),
+    );
+  }
+}
+
+class HappyNewYearText extends StatefulWidget {
+  const HappyNewYearText({
+    Key? key,
+    this.secondsToNewYear,
+  }) : super(key: key);
+
+  final int? secondsToNewYear;
+
+  @override
+  _HappyNewYearTextState createState() => _HappyNewYearTextState();
+}
+
+class _HappyNewYearTextState extends State<HappyNewYearText>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _showHappyNewYearController;
+  late Interval _opacity;
+  late Interval _scale;
+  int? _previousSecondsToNewYear;
+
+  @override
+  void initState() {
+    super.initState();
+    _showHappyNewYearController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    _opacity = const Interval(0.0, 0.4);
+    _scale = const Interval(0.0, 0.5, curve: Curves.elasticOut);
+
+    _previousSecondsToNewYear = widget.secondsToNewYear;
+    if (_shouldDisplayHappyNewYears()) {
+      _showHappyNewYearController.forward();
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant HappyNewYearText oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.secondsToNewYear != oldWidget.secondsToNewYear) {
+      _previousSecondsToNewYear = widget.secondsToNewYear;
+      if (_shouldDisplayHappyNewYears()) {
+        _showHappyNewYearController.forward();
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _showHappyNewYearController.dispose();
+    super.dispose();
+  }
+
+  bool _shouldDisplayHappyNewYears() =>
+      widget.secondsToNewYear != null &&
+      (widget.secondsToNewYear! <= 0 && widget.secondsToNewYear! > -5);
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 500),
+      child: _shouldDisplayHappyNewYears()
+          ? Align(
+              alignment: const Alignment(0.0, -0.35),
+              child: Transform.scale(
+                scale: _scale.transform(_showHappyNewYearController.value),
+                child: Opacity(
+                  opacity:
+                      _opacity.transform(_showHappyNewYearController.value),
+                  child: const Text(
+                    "HAPPY\nNEW\nYEAR",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 80,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      height: 0.9,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          : const SizedBox(),
     );
   }
 }
@@ -184,6 +375,7 @@ class LandScape extends StatelessWidget {
   const LandScape({
     Key? key,
     required this.mode,
+    this.fireworks = const SizedBox(),
     this.time = "",
     this.year = "",
   }) : super(key: key);
@@ -191,6 +383,7 @@ class LandScape extends StatelessWidget {
   static const switchModeDuration = Duration(milliseconds: 500);
 
   final EnvironmentMode mode;
+  final Widget fireworks;
   final String time;
   final String year;
 
@@ -203,6 +396,7 @@ class LandScape extends StatelessWidget {
           duration: switchModeDuration,
         ),
         Stars(mode: mode),
+        fireworks,
         Mountains(
           mode: mode,
           duration: switchModeDuration,

@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:animation_practice/page_indicator/page_indicator_example.dart';
+import 'package:flutter/material.dart';
 
 class IndicatorPracticePage extends StatefulWidget {
   const IndicatorPracticePage({Key? key}) : super(key: key);

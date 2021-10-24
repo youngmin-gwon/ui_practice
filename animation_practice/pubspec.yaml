@@ -29,6 +29,7 @@ dependencies:
   transparent_image: ^2.0.0
   random_user: ^0.3.0
   intl: ^0.17.0
+  confetti: ^0.6.0
 
 dev_dependencies:
   build_runner: ^1.12.2
