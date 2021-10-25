@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_challenge/beginner/data/menu.dart';
+import 'package:flutter_ui_challenge/beginner/widgets/action_card.dart';
 import 'package:flutter_ui_challenge/beginner/widgets/menu_tile.dart';
 
 class BeginnerLevelPage extends StatefulWidget {
@@ -11,6 +12,38 @@ class BeginnerLevelPage extends StatefulWidget {
 
 class _BeginnerLevelPageState extends State<BeginnerLevelPage> {
   int _index = 0;
+
+  final colors = const [
+    Colors.blue,
+    Colors.purple,
+    Colors.red,
+  ];
+
+  final cardGradients = const [
+    LinearGradient(
+      colors: <Color>[
+        Color(0xFF0075D1),
+        Color(0xFF00A2E3),
+      ],
+      stops: <double>[0.4, 0.6],
+      begin: Alignment.topRight,
+      end: Alignment.bottomLeft,
+    ),
+    LinearGradient(
+        colors: <Color>[Color(0xFF882DEB), Color(0xFF9A4DFF)],
+        stops: <double>[0.5, 0.7],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight),
+    LinearGradient(
+      colors: <Color>[
+        Color(0xFFBA110E),
+        Color(0xFFCF3110),
+      ],
+      stops: <double>[0.6, 0.8],
+      begin: Alignment.bottomRight,
+      end: Alignment.topLeft,
+    )
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -152,34 +185,22 @@ class _BeginnerLevelPageState extends State<BeginnerLevelPage> {
           SliverList(
               delegate: SliverChildListDelegate([
             Container(
-              height: 120,
-              child: ListView.separated(
+              constraints: BoxConstraints(
+                maxHeight: 120,
+              ),
+              child: ListView.builder(
                 shrinkWrap: true,
                 padding: const EdgeInsets.all(12),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 2,
-                    color: Colors.purple,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.all(12),
-                      width: 160,
-                      alignment: Alignment.center,
-                      child: Text(
-                        mockMenuData[index].label,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                  return ActionCard(
+                    color: colors[index],
+                    gradient: cardGradients[(index % 3)],
+                    title: mockMenuData[index].label,
+                    icon: mockMenuData[index].icon,
                   );
                 },
-                separatorBuilder: (context, index) => const SizedBox(width: 10),
-                itemCount: mockMenuData.length,
+                itemCount: 3,
               ),
             ),
             ...mockMenuData.map((menu) => MenuTile(menu: menu)).toList()

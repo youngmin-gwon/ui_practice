@@ -4,15 +4,9 @@ import 'dart:math';
 import 'package:collection/collection.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show SystemChrome, DeviceOrientation;
 import 'package:intl/intl.dart' show DateFormat;
 
 void main() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.landscapeLeft,
-    DeviceOrientation.landscapeRight,
-  ]);
-
   runApp(const MyApp());
 }
 

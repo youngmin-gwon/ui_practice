@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_challenge/intermediate/intermediate_page.dart';
 
 import 'beginner/beginner_page.dart';
 
@@ -24,6 +25,16 @@ class HomePage extends StatelessWidget {
                     ));
               },
               child: const Text("Beginner Level"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const IntermediatePage(),
+                    ));
+              },
+              child: const Text("Intermediate Level"),
             ),
           ],
         ),

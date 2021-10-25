@@ -42,24 +42,17 @@ class _CardPracticeState extends State<CardPractice> {
 
   @override
   Widget build(BuildContext context) {
+    print("card rebuilt");
+
     return Stack(alignment: Alignment.center, children: [
-      _alignment == const FractionalOffset(0.0, 0.5)
-          ? Transform(
-              transform: Matrix4.identity()
-                ..setEntry(3, 2, _perspective)
-                ..scale(1 - lerpDouble(0, -0.25, _index - _page)!)
-                ..rotateY(_angle * (_page - _index)),
-              alignment: _alignment,
-              child: CardPracticeBackground(product: _product),
-            )
-          : Transform(
-              transform: Matrix4.identity()
-                ..setEntry(3, 2, _perspective)
-                ..scale(1 - lerpDouble(0, -0.25, _index - _page)!)
-                ..rotateY(_angle * (_page - _index)),
-              alignment: _alignment,
-              child: CardPracticeBackground(product: _product),
-            ),
+      Transform(
+        transform: Matrix4.identity()
+          ..setEntry(3, 2, _perspective)
+          ..scale(1 - lerpDouble(0, -0.25, _index - _page)!)
+          ..rotateY(_angle * (_page - _index)),
+        alignment: _alignment,
+        child: CardPracticeBackground(product: _product),
+      ),
       Transform.translate(
         offset: const Offset(0, -20),
         child: Transform.rotate(
@@ -91,6 +84,8 @@ class CardPracticeBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("card background rebuilt");
+
     return Container(
       height: 500,
       width: 250,
@@ -136,16 +131,13 @@ class CardPracticeBackground extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Opacity(
-                    opacity: 0.99,
-                    child: Container(
-                      width: 48,
-                      height: 48,
-                      color: const Color(0xFF232323),
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.white30,
-                      ),
+                  Container(
+                    width: 48,
+                    height: 48,
+                    color: const Color(0xFF232323),
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white30,
                     ),
                   )
                 ]),
