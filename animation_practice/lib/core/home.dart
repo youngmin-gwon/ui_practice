@@ -3,6 +3,7 @@ import 'package:animation_practice/celebration_animation/new_year_celebration_pa
 import 'package:animation_practice/cli_ui/cli_ui.dart';
 import 'package:animation_practice/face_pile/face_pile_animation.dart';
 import 'package:animation_practice/kinetic_poster_animation/kinetic_poster_example.dart';
+import 'package:animation_practice/milk_glass/milk_glass_screen.dart';
 import 'package:animation_practice/page_indicator/page_indicator_example.dart';
 import 'package:animation_practice/practice/practice_home.dart';
 import 'package:animation_practice/spring_animation/spring_challenge.dart';
@@ -86,10 +87,18 @@ class HomePage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => NewYearCelebrationScreen(),
+                      builder: (context) => const NewYearCelebrationScreen(),
                     ),
                   ),
                   child: const Text("New Year Celebration Animation"),
+                ),
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const MilkGlassScreen(),
+                    ),
+                  ),
+                  child: const Text("Glass of Milk(Custom Painter)"),
                 ),
                 const SizedBox(height: 12),
                 ElevatedButton(

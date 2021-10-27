@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         if (!visible && lastOne != null) {
           headerNotifier.value = _MyHeader(
             visible: true,
-            title: title,
+            title: lastOne,
           );
         } else {
           headerNotifier.value = _MyHeader(
@@ -159,6 +159,7 @@ class _HomePageState extends State<HomePage> {
                       onHeaderChanged: (visible) => _refreshHeader(
                         "March",
                         visible,
+                        lastOne: "April",
                       ),
                     ),
                   ),
@@ -210,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                             ? DecoratedBox(
                                 key: Key(title),
                                 decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.7),
+                                  color: Colors.black.withOpacity(0.4),
                                 ),
                                 child: Text(
                                   title,
