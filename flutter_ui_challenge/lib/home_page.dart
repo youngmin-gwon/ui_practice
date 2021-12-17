@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_challenge/intermediate/intermediate_page.dart';
+import 'package:flutter_ui_challenge/pdf/pdf_screen.dart';
 
 import 'beginner/beginner_page.dart';
 
@@ -35,6 +36,16 @@ class HomePage extends StatelessWidget {
                     ));
               },
               child: const Text("Intermediate Level"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PDFScreen(),
+                    ));
+              },
+              child: const Text("PDF"),
             ),
           ],
         ),
