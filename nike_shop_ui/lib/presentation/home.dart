@@ -17,11 +17,7 @@ class _HomePageState extends State<HomePage>
   String _productCategory = "TRAINING";
 
   late AnimationController _animationController;
-  Animation<Offset>? _searchOffsetAnimation;
-  Animation<Offset>? _cardOffsetAnimation;
   late Animation<double> _nikeLogoOffsetAnimation;
-  Animation<Offset>? _productBackgroundOffsetAnimation;
-  Animation<Offset>? _productOffsetAnimation;
 
   bool _isAnimated = false;
 
@@ -85,11 +81,11 @@ class _HomePageState extends State<HomePage>
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Container(
+                    SizedBox(
                       height: size.height * 0.60,
                       width: size.width,
                       child: PageView.builder(
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         itemCount: mockProducts.length,
                         controller: _pageController,
                         itemBuilder: (BuildContext context, int index) {

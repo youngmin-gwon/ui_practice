@@ -19,7 +19,7 @@ class PlantStatsPage extends StatelessWidget {
             children: [
               Text(
                 'Your Plant Stats',
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               SizedBox(
                 height: 45,

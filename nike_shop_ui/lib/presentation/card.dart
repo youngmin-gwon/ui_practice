@@ -2,8 +2,6 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:nike_shop_ui/domain/product.dart';
 
@@ -43,39 +41,37 @@ class _CardViewState extends State<CardView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          _alignment == const FractionalOffset(0.0, 0.5)
-              ? Transform(
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, _perspective)
-                    ..scale(1 - lerpDouble(0, -0.25, _index - _page)!)
-                    ..rotateY(_angle * (_page - _index)),
-                  alignment: _alignment,
-                  child: CardBackground(
-                    product: _product,
-                  ),
-                )
-              : CardBackground(product: _product),
-          Transform.translate(
-            offset: Offset(0, -20),
-            child: Transform.rotate(
-              angle: _productAngle * (_page - _index),
-              child: Container(
-                height: 160,
-                child: Center(
-                  child: Transform.rotate(
-                    angle: 276,
-                    child: Image(image: _product.image),
-                  ),
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        _alignment == const FractionalOffset(0.0, 0.5)
+            ? Transform(
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, _perspective)
+                  ..scale(1 - lerpDouble(0, -0.25, _index - _page)!)
+                  ..rotateY(_angle * (_page - _index)),
+                alignment: _alignment,
+                child: CardBackground(
+                  product: _product,
+                ),
+              )
+            : CardBackground(product: _product),
+        Transform.translate(
+          offset: const Offset(0, -20),
+          child: Transform.rotate(
+            angle: _productAngle * (_page - _index),
+            child: SizedBox(
+              height: 160,
+              child: Center(
+                child: Transform.rotate(
+                  angle: 276,
+                  child: Image(image: _product.image),
                 ),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

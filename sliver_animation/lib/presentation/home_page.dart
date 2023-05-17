@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                 ValueListenableBuilder<double>(
                     valueListenable: scrollNotifier,
                     builder: (context, snapshot, _) {
-                      final space = _cardHeaderSize - kToolbarHeight;
+                      const space = _cardHeaderSize - kToolbarHeight;
                       final percent = lerpDouble(
                         0.0,
                         -pi / 2,
@@ -249,7 +249,7 @@ class _MyHeader {
   final bool visible;
 }
 
-const MAX_HEADER_TITLE_HEIGHT = 55.0;
+const kMaxHeaderTitleHeight = 55.0;
 
 typedef OnHeaderChanged = void Function(bool isVisible);
 
@@ -287,10 +287,10 @@ class _MyHeaderTitle extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => MAX_HEADER_TITLE_HEIGHT;
+  double get maxExtent => kMaxHeaderTitleHeight;
 
   @override
-  double get minExtent => MAX_HEADER_TITLE_HEIGHT;
+  double get minExtent => kMaxHeaderTitleHeight;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>

@@ -12,9 +12,7 @@ const shimmerGradient = LinearGradient(
     0.3,
     0.4,
   ],
-  begin: Alignment(-1.0, 0),
   end: Alignment(1.0, 0.3),
-  tileMode: TileMode.clamp,
 );
 
 class ShimmerLoading extends StatefulWidget {
@@ -72,13 +70,14 @@ class _ShimmerLoadingState extends State<ShimmerLoading> {
     if (!shimmer.isSized) {
       // The ancestor Shimmer widget isn’t laid
       // out yet. Return an empty box.
-      return SizedBox();
+      return const SizedBox();
     }
 
     final shimmerSize = shimmer.size;
     final gradient = shimmer.gradient;
     final offsetWithinShimmer = shimmer.getDescendantOffset(
-        descendant: context.findRenderObject() as RenderBox);
+      descendant: context.findRenderObject()! as RenderBox,
+    );
 
     return ShaderMask(
       blendMode: BlendMode.srcATop,
@@ -149,15 +148,15 @@ class ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
 
   Listenable get shimmerChanges => _shimmerController;
 
-  bool get isSized => (context.findRenderObject() as RenderBox).hasSize;
+  bool get isSized => (context.findRenderObject()! as RenderBox).hasSize;
 
-  Size get size => (context.findRenderObject() as RenderBox).size;
+  Size get size => (context.findRenderObject()! as RenderBox).size;
 
   Offset getDescendantOffset({
     required RenderBox descendant,
     Offset offset = Offset.zero,
   }) {
-    final shimmerBox = context.findRenderObject() as RenderBox;
+    final shimmerBox = context.findRenderObject()! as RenderBox;
     return descendant.localToGlobal(offset, ancestor: shimmerBox);
   }
 

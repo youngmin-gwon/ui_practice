@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nike_shop_ui/domain/mock_products.dart';
 import 'package:nike_shop_ui/gen/assets.gen.dart';
 import 'package:nike_shop_ui/presentation_practice/card_practice.dart';
@@ -9,8 +8,6 @@ class HomePracticePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("home rebuilt");
-
     final size = MediaQuery.of(context).size;
 
     return Scaffold(

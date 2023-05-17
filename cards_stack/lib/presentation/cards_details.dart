@@ -2,7 +2,6 @@ import 'package:cards_stack/presentation/card_home_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cards_stack/domain/card.dart';
-import 'package:flutter/widgets.dart';
 
 class CardsDetails extends StatelessWidget {
   const CardsDetails({

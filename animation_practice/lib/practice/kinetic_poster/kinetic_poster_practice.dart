@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 class KineticPosterPracticePage extends StatefulWidget {
-  const KineticPosterPracticePage({Key? key}) : super(key: key);
+  const KineticPosterPracticePage({super.key});
 
   @override
   _KineticPosterPracticePageState createState() =>
@@ -34,7 +34,7 @@ class _KineticPosterPracticePageState extends State<KineticPosterPracticePage>
 
   @override
   Widget build(BuildContext context) {
-    final numberOfItems = 20;
+    const numberOfItems = 20;
     return Scaffold(
       backgroundColor: Colors.black,
       body: SizedBox.expand(
@@ -78,7 +78,7 @@ class _KineticPosterPracticePageState extends State<KineticPosterPracticePage>
 }
 
 class LinearTextPractice extends StatelessWidget {
-  const LinearTextPractice({Key? key}) : super(key: key);
+  const LinearTextPractice({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class LinearTextPractice extends StatelessWidget {
               0.2,
               0.5,
             ],
-          )),
+          ),),
           child: const Text(
             "LINEAR",
             style: TextStyle(
@@ -108,6 +108,6 @@ class LinearTextPractice extends StatelessWidget {
               fontSize: 110,
             ),
           ),
-        ));
+        ),);
   }
 }

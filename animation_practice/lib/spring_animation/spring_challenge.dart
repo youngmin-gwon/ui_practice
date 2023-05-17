@@ -4,7 +4,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 class SpringChallenge extends StatefulWidget {
-  const SpringChallenge({Key? key}) : super(key: key);
+  const SpringChallenge({super.key});
 
   @override
   _SpringChallengeState createState() => _SpringChallengeState();
@@ -53,7 +53,7 @@ class _SpringChallengeState extends State<SpringChallenge>
   @override
   Widget build(BuildContext context) {
     if (!_isInitialized) {
-      WidgetsBinding.instance!.addPostFrameCallback(
+      WidgetsBinding.instance.addPostFrameCallback(
         (timeStamp) {
           final box = context.findRenderObject() as RenderBox?;
           if (box != null && box.hasSize) {
@@ -186,8 +186,8 @@ class Spring with ChangeNotifier {
 
 class DraggableSpiderman extends StatelessWidget {
   const DraggableSpiderman({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -200,7 +200,7 @@ class DraggableSpiderman extends StatelessWidget {
 }
 
 class SpidermanBackground extends StatelessWidget {
-  const SpidermanBackground({Key? key}) : super(key: key);
+  const SpidermanBackground({super.key});
 
   @override
   Widget build(BuildContext context) {

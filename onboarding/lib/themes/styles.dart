@@ -4,25 +4,25 @@ ThemeData appTheme() {
   return ThemeData(
     primaryColor: Colors.blue,
     textTheme: const TextTheme(
-      headline6: TextStyle(
+      titleLarge: TextStyle(
         fontFamily: "Montserrat",
         fontSize: 24,
         fontWeight: FontWeight.bold,
         color: Color(0xFF425398),
       ),
-      caption: TextStyle(
+      bodySmall: TextStyle(
         fontFamily: "Montserrat",
         fontSize: 24,
         fontWeight: FontWeight.bold,
         color: Color(0xFF425398),
       ),
-      subtitle1: TextStyle(
+      titleMedium: TextStyle(
         fontFamily: "Montserrat",
         fontSize: 24,
         fontWeight: FontWeight.bold,
         color: Color(0xFF425398),
       ),
-      bodyText2: TextStyle(
+      bodyMedium: TextStyle(
         fontFamily: "Montserrat",
         fontSize: 17,
         fontWeight: FontWeight.normal,

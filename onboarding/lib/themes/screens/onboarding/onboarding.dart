@@ -45,7 +45,7 @@ class _OnBoardingState extends ConsumerState<OnBoarding> {
           },
           itemCount: onboardData.length,
         ),
-        Container(
+        SizedBox(
           width: double.infinity,
           height: 80,
           child: Align(
@@ -59,7 +59,7 @@ class _OnBoardingState extends ConsumerState<OnBoarding> {
                   padding: const EdgeInsets.only(left: 32),
                   child: Text(
                     "fun with",
-                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: color,
                         ),
                   ),
@@ -68,7 +68,7 @@ class _OnBoardingState extends ConsumerState<OnBoarding> {
                   padding: const EdgeInsets.only(right: 32),
                   child: Text(
                     "Skip",
-                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: color,
                         ),
                   ),

@@ -42,8 +42,6 @@ class _CardPracticeState extends State<CardPractice> {
 
   @override
   Widget build(BuildContext context) {
-    print("card rebuilt");
-
     return Stack(alignment: Alignment.center, children: [
       Transform(
         transform: Matrix4.identity()
@@ -84,8 +82,6 @@ class CardPracticeBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("card background rebuilt");
-
     return Container(
       height: 500,
       width: 250,

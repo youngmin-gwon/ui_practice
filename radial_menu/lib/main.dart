@@ -50,7 +50,6 @@ class _RadialMenuState extends State<RadialMenu>
 
   @override
   Widget build(BuildContext context) {
-    print("menu rebuilt");
     return RadialAnimation(
       controller: controller,
     );

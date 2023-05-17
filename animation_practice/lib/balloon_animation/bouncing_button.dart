@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class BouncingButton extends StatefulWidget {
   const BouncingButton({
-    Key? key,
+    super.key,
     required this.child,
     required this.backgroundColor,
     this.borderRadius = 2.0,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final Color backgroundColor;
@@ -77,11 +77,10 @@ class _BouncingButtonState extends State<BouncingButton>
 
 class _AnimatedButton extends StatelessWidget {
   const _AnimatedButton({
-    Key? key,
     this.borderRadius = 2.0,
     required this.backgroundColor,
     required this.child,
-  }) : super(key: key);
+  });
 
   final double borderRadius;
   final Color backgroundColor;

@@ -9,7 +9,7 @@ enum BallonState {
 }
 
 class BalloonInitialPage extends StatefulWidget {
-  const BalloonInitialPage({Key? key}) : super(key: key);
+  const BalloonInitialPage({super.key});
 
   @override
   State<BalloonInitialPage> createState() => _BalloonInitialPageState();
@@ -26,7 +26,7 @@ class _BalloonInitialPageState extends State<BalloonInitialPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
+            const Expanded(
               flex: 3,
               child: Text(
                 "Cloud Storage",
@@ -54,7 +54,7 @@ class _BalloonInitialPageState extends State<BalloonInitialPage> {
                       child: child,
                     );
                   },
-                  child: Column(
+                  child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
@@ -66,11 +66,11 @@ class _BalloonInitialPageState extends State<BalloonInitialPage> {
                           fontWeight: FontWeight.w300,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10),
                       Expanded(
                         child: FittedBox(
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom: 20.0),
+                            padding: EdgeInsets.only(bottom: 20.0),
                             child: ProgressCount(),
                           ),
                         ),
@@ -85,7 +85,7 @@ class _BalloonInitialPageState extends State<BalloonInitialPage> {
                 child: TweenAnimationBuilder<double>(
                   tween: Tween<double>(
                       begin: 1.0,
-                      end: _currentState != BallonState.initial ? 0.0 : 1.0),
+                      end: _currentState != BallonState.initial ? 0.0 : 1.0,),
                   onEnd: () {
                     setState(() {
                       _currentState = BallonState.end;
@@ -102,10 +102,10 @@ class _BalloonInitialPageState extends State<BalloonInitialPage> {
                       ),
                     );
                   },
-                  child: Column(
+                  child: const Column(
                     children: [
                       Text("last backup"),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10),
                       Text(
                         "28 may 2020",
                         style: TextStyle(
@@ -132,8 +132,8 @@ class _BalloonInitialPageState extends State<BalloonInitialPage> {
                         },
                         borderRadius: 10,
                         backgroundColor: mainColor,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20.0),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20.0),
                           child: Text(
                             "Create Backup",
                             style: TextStyle(
@@ -149,9 +149,9 @@ class _BalloonInitialPageState extends State<BalloonInitialPage> {
                           _currentState = BallonState.initial;
                         });
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 20.0, horizontal: 40.0),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 20.0, horizontal: 40.0,),
                         child: Text(
                           "Cancel",
                           style: TextStyle(color: mainColor),
@@ -168,7 +168,7 @@ class _BalloonInitialPageState extends State<BalloonInitialPage> {
 }
 
 class ProgressCount extends StatelessWidget {
-  const ProgressCount({Key? key}) : super(key: key);
+  const ProgressCount({super.key});
 
   @override
   Widget build(BuildContext context) {

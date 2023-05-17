@@ -6,11 +6,11 @@ const secondaryColor = Color(0xFFBC53FA);
 const backgroundColor = Color(0xFFFCE7FE);
 
 class BalloonPage extends StatelessWidget {
-  const BalloonPage({Key? key}) : super(key: key);
+  const BalloonPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: backgroundColor,
       body: Stack(
         children: [

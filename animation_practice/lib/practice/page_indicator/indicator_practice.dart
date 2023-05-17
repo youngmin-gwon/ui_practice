@@ -2,7 +2,7 @@ import 'package:animation_practice/page_indicator/page_indicator_example.dart';
 import 'package:flutter/material.dart';
 
 class IndicatorPracticePage extends StatefulWidget {
-  const IndicatorPracticePage({Key? key}) : super(key: key);
+  const IndicatorPracticePage({super.key});
 
   @override
   _IndicatorPracticePageState createState() => _IndicatorPracticePageState();
@@ -43,7 +43,7 @@ class _IndicatorPracticePageState extends State<IndicatorPracticePage> {
                 imageAsset: "assets/disney_plus.png",
                 title: "Disney +",
               ),
-              OTTPage(
+              const OTTPage(
                 backgroundColor: Colors.white,
                 textColor: Colors.pink,
                 imageAsset: "assets/watcha.png",
@@ -61,7 +61,7 @@ class _IndicatorPracticePageState extends State<IndicatorPracticePage> {
                 imageAsset: "assets/disney_plus.png",
                 title: "Disney +",
               ),
-              OTTPage(
+              const OTTPage(
                 backgroundColor: Colors.white,
                 textColor: Colors.pink,
                 imageAsset: "assets/watcha.png",
@@ -85,9 +85,9 @@ class _IndicatorPracticePageState extends State<IndicatorPracticePage> {
 
 class PageIndicatorPractice extends StatelessWidget {
   const PageIndicatorPractice({
-    Key? key,
+    super.key,
     required this.pageController,
-  }) : super(key: key);
+  });
 
   final PageController pageController;
 
@@ -111,7 +111,7 @@ class PageIndicatorPractice extends StatelessWidget {
               indicatorColor: Colors.indigo,
             ),
           );
-        });
+        },);
   }
 }
 

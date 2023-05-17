@@ -4,7 +4,7 @@ import 'package:animation_practice/practice/page_indicator/indicator_practice.da
 import 'package:flutter/material.dart';
 
 class PracticeHomePage extends StatelessWidget {
-  const PracticeHomePage({Key? key}) : super(key: key);
+  const PracticeHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

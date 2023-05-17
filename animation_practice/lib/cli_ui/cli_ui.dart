@@ -1,11 +1,10 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CommandLinePage extends StatefulWidget {
-  const CommandLinePage({Key? key}) : super(key: key);
+  const CommandLinePage({super.key});
 
   @override
   State<CommandLinePage> createState() => _CommandLinePageState();
@@ -168,7 +167,7 @@ class _CommandLinePageState extends State<CommandLinePage> {
 
 class TypeWriter extends StatefulWidget {
   const TypeWriter({
-    Key? key,
+    super.key,
     required this.prefixText,
     required this.prefixTextStyle,
     required this.spacingAfterPrefix,
@@ -176,7 +175,7 @@ class TypeWriter extends StatefulWidget {
     required this.textStyle,
     required this.cursorColor,
     this.onComplete,
-  }) : super(key: key);
+  });
 
   final String prefixText;
   final TextStyle prefixTextStyle;
@@ -344,11 +343,11 @@ class _TypeWriterState extends State<TypeWriter> {
 
 class BlinkingCursor extends StatefulWidget {
   const BlinkingCursor({
-    Key? key,
+    super.key,
     required this.fontSize,
     required this.color,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final double? fontSize;
   final Color color;
@@ -416,7 +415,7 @@ class _BlinkingCursorState extends State<BlinkingCursor>
               fontSize: widget.fontSize,
             ),
           );
-        });
+        },);
   }
 }
 

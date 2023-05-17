@@ -309,12 +309,12 @@ class _HomePageState extends State<HomePage>
                                       Transform.translate(
                                         offset:
                                             _productNameOffsetAnimation.value,
-                                        child: Column(
+                                        child: const Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: const <Widget>[
+                                          children: <Widget>[
                                             SelectableText(
                                               'NIKE MAG FROM "BACK TO THE FUTURE"',
                                               style: TextStyle(

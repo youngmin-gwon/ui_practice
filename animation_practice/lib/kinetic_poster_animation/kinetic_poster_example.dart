@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 class KineticPosterExamplePage extends StatefulWidget {
-  const KineticPosterExamplePage({Key? key}) : super(key: key);
+  const KineticPosterExamplePage({super.key});
 
   @override
   _KineticPosterExamplePageState createState() =>
@@ -81,7 +81,7 @@ class _KineticPosterExamplePageState extends State<KineticPosterExamplePage>
 }
 
 class LinearText extends StatelessWidget {
-  const LinearText({Key? key}) : super(key: key);
+  const LinearText({super.key});
 
   @override
   Widget build(BuildContext context) {

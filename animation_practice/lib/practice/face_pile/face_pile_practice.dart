@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class FacePilePractice extends StatefulWidget {
-  const FacePilePractice({Key? key}) : super(key: key);
+  const FacePilePractice({super.key});
 
   @override
   _FacePilePracticeState createState() => _FacePilePracticeState();
@@ -75,11 +75,11 @@ class _FacePilePracticeState extends State<FacePilePractice> {
 
 class FacePile extends StatefulWidget {
   const FacePile({
-    Key? key,
+    super.key,
     required this.users,
     this.faceSize = 48,
     this.facePercentOverlap = 0.1,
-  }) : super(key: key);
+  });
 
   final List<User> users;
   final double faceSize;
@@ -156,18 +156,18 @@ class _FacePileState extends State<FacePile> {
           ],
         ),
       );
-    });
+    },);
   }
 }
 
 class AppearingAndDisappearingFace extends StatefulWidget {
   const AppearingAndDisappearingFace({
-    Key? key,
+    super.key,
     required this.user,
     this.faceSize = 48,
     required this.showFace,
     required this.onDisappear,
-  }) : super(key: key);
+  });
 
   final User user;
   final double faceSize;
@@ -252,12 +252,12 @@ class _AppearingAndDisappearingFaceState
 
 class AvatarCircle extends StatefulWidget {
   const AvatarCircle({
-    Key? key,
+    super.key,
     required this.user,
     this.size = 48,
     required this.nameLabelColor,
     required this.backgroundColor,
-  }) : super(key: key);
+  });
 
   final User user;
   final double size;
@@ -296,7 +296,7 @@ class _AvatarCircleState extends State<AvatarCircle> {
                   fontSize: 8,
                   color: widget.nameLabelColor,
                   fontWeight: FontWeight.bold,
-                )),
+                ),),
           ),
           FadeInImage.memoryNetwork(
             placeholder: kTransparentImage,

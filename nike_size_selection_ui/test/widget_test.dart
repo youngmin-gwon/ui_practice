@@ -12,7 +12,7 @@ import 'package:nike_size_selection_ui/core/presentation/app_widget.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(AppWidget());
+    await tester.pumpWidget(const AppWidget());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

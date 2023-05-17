@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PageIndicatorExamplePage extends StatefulWidget {
-  const PageIndicatorExamplePage({Key? key}) : super(key: key);
+  const PageIndicatorExamplePage({super.key});
 
   @override
   State<PageIndicatorExamplePage> createState() =>
@@ -43,7 +43,7 @@ class _PageIndicatorExamplePageState extends State<PageIndicatorExamplePage> {
                 imageAsset: "assets/disney_plus.png",
                 title: "Disney +",
               ),
-              OTTPage(
+              const OTTPage(
                 backgroundColor: Colors.white,
                 textColor: Colors.pink,
                 imageAsset: "assets/watcha.png",
@@ -67,9 +67,9 @@ class _PageIndicatorExamplePageState extends State<PageIndicatorExamplePage> {
 
 class PageIndicator extends StatelessWidget {
   const PageIndicator({
-    Key? key,
+    super.key,
     required this.pageController,
-  }) : super(key: key);
+  });
 
   final PageController pageController;
 
@@ -93,7 +93,7 @@ class PageIndicator extends StatelessWidget {
                       : 0.0,
             ),
           );
-        });
+        },);
   }
 }
 
@@ -201,12 +201,12 @@ class PageIndicatorPainter extends CustomPainter {
 
 class OTTPage extends StatelessWidget {
   const OTTPage({
-    Key? key,
+    super.key,
     required this.backgroundColor,
     required this.textColor,
     required this.imageAsset,
     required this.title,
-  }) : super(key: key);
+  });
 
   final Color backgroundColor;
   final Color textColor;

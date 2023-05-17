@@ -1,24 +1,22 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:animation_practice/assets/assets.gen.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
 
-import 'package:animation_practice/assets/assets.gen.dart';
-
 class NewYearCelebrationScreen extends StatelessWidget {
   const NewYearCelebrationScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: TimeLapse(
         overrideStartDateTime: DateTime.parse("2021-12-31 23:59:55"),
-        doTick: true,
         dateTimeBuilder: (DateTime currentTime) {
           return NewYearsCountDownPage(
             currentTime: currentTime,
@@ -31,11 +29,11 @@ class NewYearCelebrationScreen extends StatelessWidget {
 
 class TimeLapse extends StatefulWidget {
   const TimeLapse({
-    Key? key,
+    super.key,
     this.overrideStartDateTime,
     this.doTick = true,
     required this.dateTimeBuilder,
-  }) : super(key: key);
+  });
 
   final DateTime? overrideStartDateTime;
   final bool doTick;
@@ -118,9 +116,9 @@ class _TimeLapseState extends State<TimeLapse>
 
 class NewYearsCountDownPage extends StatefulWidget {
   const NewYearsCountDownPage({
-    Key? key,
+    super.key,
     required this.currentTime,
-  }) : super(key: key);
+  });
 
   final DateTime currentTime;
 
@@ -239,7 +237,6 @@ class _NewYearsCountDownPageState extends State<NewYearsCountDownPage>
             particleDrag: 0.1,
             numberOfParticles: 35,
             emissionFrequency: 0.0000001,
-            shouldLoop: false,
           ),
         ),
       );
@@ -277,9 +274,9 @@ class _NewYearsCountDownPageState extends State<NewYearsCountDownPage>
 // TODO: add count down effect
 class CountDownText extends StatefulWidget {
   const CountDownText({
-    Key? key,
+    super.key,
     this.secondsToNewYear,
-  }) : super(key: key);
+  });
 
   final int? secondsToNewYear;
 
@@ -363,9 +360,9 @@ class _CountDownTextState extends State<CountDownText>
 
 class HappyNewYearText extends StatefulWidget {
   const HappyNewYearText({
-    Key? key,
+    super.key,
     this.secondsToNewYear,
-  }) : super(key: key);
+  });
 
   final int? secondsToNewYear;
 
@@ -378,7 +375,6 @@ class _HappyNewYearTextState extends State<HappyNewYearText>
   late AnimationController _showHappyNewYearController;
   late Interval _opacity;
   late Interval _scale;
-  int? _previousSecondsToNewYear;
 
   @override
   void initState() {
@@ -393,7 +389,6 @@ class _HappyNewYearTextState extends State<HappyNewYearText>
     _opacity = const Interval(0.0, 0.4);
     _scale = const Interval(0.0, 0.5, curve: Curves.elasticOut);
 
-    _previousSecondsToNewYear = widget.secondsToNewYear;
     if (_shouldDisplayHappyNewYears()) {
       _showHappyNewYearController.forward();
     }
@@ -404,7 +399,6 @@ class _HappyNewYearTextState extends State<HappyNewYearText>
     super.didUpdateWidget(oldWidget);
 
     if (widget.secondsToNewYear != oldWidget.secondsToNewYear) {
-      _previousSecondsToNewYear = widget.secondsToNewYear;
       if (_shouldDisplayHappyNewYears()) {
         _showHappyNewYearController.forward();
       }
@@ -453,13 +447,13 @@ class _HappyNewYearTextState extends State<HappyNewYearText>
 
 class LandScape extends StatelessWidget {
   const LandScape({
-    Key? key,
+    super.key,
     required this.mode,
     this.fireworks = const SizedBox(),
     this.flashPercent = 0.0,
     this.time = "",
     this.year = "",
-  }) : super(key: key);
+  });
 
   static const switchModeDuration = Duration(milliseconds: 500);
 
@@ -498,10 +492,10 @@ class LandScape extends StatelessWidget {
 
 class Sky extends StatelessWidget {
   const Sky({
-    Key? key,
+    super.key,
     required this.mode,
     required this.duration,
-  }) : super(key: key);
+  });
 
   final EnvironmentMode mode;
   final Duration duration;
@@ -536,9 +530,9 @@ class Sky extends StatelessWidget {
 
 class MountainsFlash extends StatelessWidget {
   const MountainsFlash({
-    Key? key,
+    super.key,
     required this.flashPercent,
-  }) : super(key: key);
+  });
 
   final double flashPercent;
 
@@ -561,10 +555,10 @@ class MountainsFlash extends StatelessWidget {
 
 class Mountains extends StatelessWidget {
   const Mountains({
-    Key? key,
+    super.key,
     required this.mode,
     required this.duration,
-  }) : super(key: key);
+  });
 
   final EnvironmentMode mode;
   final Duration duration;
@@ -602,9 +596,9 @@ class Mountains extends StatelessWidget {
 
 class Stars extends StatelessWidget {
   const Stars({
-    Key? key,
+    super.key,
     required this.mode,
-  }) : super(key: key);
+  });
 
   final EnvironmentMode mode;
 
@@ -618,18 +612,19 @@ class Stars extends StatelessWidget {
             child: Image(
               image: Assets.stars,
               fit: BoxFit.cover,
-            ))
+            ),
+          )
         : const SizedBox();
   }
 }
 
 class TimeText extends StatelessWidget {
   const TimeText({
-    Key? key,
+    super.key,
     required this.time,
     required this.year,
     required this.mode,
-  }) : super(key: key);
+  });
 
   final String time;
   final String year;

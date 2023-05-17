@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         textTheme: const TextTheme(
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
             color: Colors.black38,
             fontSize: 30,
           ),
@@ -121,7 +121,7 @@ class ClockColumn extends StatelessWidget {
     return Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Text(
         title,
-        style: Theme.of(context).textTheme.bodyText1,
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
       ...bits.mapIndexed(
         (idx, bit) {

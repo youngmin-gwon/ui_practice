@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class MilkGlassScreen extends StatefulWidget {
-  const MilkGlassScreen({Key? key}) : super(key: key);
+  const MilkGlassScreen({super.key});
 
   @override
   _MilkGlassScreenState createState() => _MilkGlassScreenState();
@@ -22,7 +22,7 @@ class _MilkGlassScreenState extends State<MilkGlassScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
+            SizedBox(
               width: 300,
               height: 200,
               child: CustomPaint(
@@ -131,7 +131,7 @@ class MilkGlassPainter extends CustomPainter {
           size.height - size.width * .5 * skew * ratio,
         ),
         width: size.width * ratio,
-        height: size.width * skew * ratio);
+        height: size.width * skew * ratio,);
 
     final liquidTop = Rect.lerp(top, bottom, fullness)!;
 

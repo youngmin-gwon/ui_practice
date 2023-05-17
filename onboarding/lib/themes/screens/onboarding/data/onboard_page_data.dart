@@ -4,9 +4,9 @@ import 'package:onboarding/themes/screens/onboarding/models/onboard_page_model.d
 
 List<OnboardPageModel> onboardData = [
   OnboardPageModel(
-    Color(0xFFE6E6E6),
-    Color(0xFF005699),
-    Color(0xFFFFE074),
+    const Color(0xFFE6E6E6),
+    const Color(0xFF005699),
+    const Color(0xFFFFE074),
     0,
     'assets/images/flutter_onboarding_1.png',
     'EXPLORING',
@@ -14,9 +14,9 @@ List<OnboardPageModel> onboardData = [
     'On this channel we try and build fun stuff using Flutter and Dart. Subscribe for more content and let me know what you think in the comments!',
   ),
   OnboardPageModel(
-    Color(0xFF005699),
-    Color(0xFFFFE074),
-    Color(0xFF39393A),
+    const Color(0xFF005699),
+    const Color(0xFFFFE074),
+    const Color(0xFF39393A),
     1,
     'assets/images/flutter_onboarding_2.png',
     'ANIMATING',
@@ -24,9 +24,9 @@ List<OnboardPageModel> onboardData = [
     'Making Flare animations and incorporating it into Flutter. Mobile animations have never been so easy!',
   ),
   OnboardPageModel(
-    Color(0xFFFFE074),
-    Color(0xFF39393A),
-    Color(0xFFE6E6E6),
+    const Color(0xFFFFE074),
+    const Color(0xFF39393A),
+    const Color(0xFFE6E6E6),
     2,
     'assets/images/flutter_onboarding_3.png',
     'DESIGN AND',
@@ -34,9 +34,9 @@ List<OnboardPageModel> onboardData = [
     'Recreating and imagining our own designs and animations to create custom effects and widgets.',
   ),
   OnboardPageModel(
-    Color(0xFF39393A),
-    Color(0xFFE6E6E6),
-    Color(0xFF005699),
+    const Color(0xFF39393A),
+    const Color(0xFFE6E6E6),
+    const Color(0xFF005699),
     3,
     'assets/images/flutter_onboarding_4.png',
     'EDUCATIONAL',

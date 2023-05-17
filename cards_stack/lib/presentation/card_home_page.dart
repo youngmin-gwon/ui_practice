@@ -32,14 +32,14 @@ class CardsHome extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () => null,
+              onPressed: () {},
               icon: const Icon(
                 Icons.search,
               ),
             ),
           ],
         ),
-        body: Column(
+        body: const Column(
           children: [
             Expanded(
               flex: 3,
@@ -49,7 +49,7 @@ class CardsHome extends StatelessWidget {
               flex: 2,
               child: CardHorizontal(),
             ),
-            const SizedBox(
+            SizedBox(
               height: 20,
             )
           ],
@@ -204,7 +204,7 @@ class Card3DItem extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    final depthFactor = 50.0;
+    const depthFactor = 50.0;
     final bottomMargin = height / 4.0;
     return Positioned(
       left: 0,

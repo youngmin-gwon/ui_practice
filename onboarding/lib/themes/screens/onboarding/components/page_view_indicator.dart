@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -28,7 +27,7 @@ class _PageViewIndicatorState extends State<PageViewIndicator> {
         currentIndicator: widget.controller.page?.round() ?? -1,
         color: widget.color,
       ),
-      child: Container(
+      child: const SizedBox(
         width: 60,
         height: 10,
       ),
@@ -44,7 +43,7 @@ class IndicatorPainter extends CustomPainter {
   IndicatorPainter(
       {required this.length,
       required this.currentIndicator,
-      this.color = Colors.black});
+      this.color = Colors.black,});
 
   @override
   void paint(Canvas canvas, Size size) {

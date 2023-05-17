@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         title: 'OnBoarding Demo',
         debugShowCheckedModeBanner: false,
         theme: appTheme(),
-        home: const Home());
+        home: const Home(),);
   }
 }
 

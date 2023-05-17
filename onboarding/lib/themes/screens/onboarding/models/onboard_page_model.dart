@@ -18,5 +18,5 @@ class OnboardPageModel {
       this.imagePath,
       this.caption,
       this.subhead,
-      this.description);
+      this.description,);
 }
