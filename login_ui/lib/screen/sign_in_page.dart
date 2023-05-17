@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class SignInPage extends StatefulWidget {
+class SignInPage extends StatelessWidget {
   SignInPage({
     Key? key,
     void Function()? onError,
@@ -12,11 +11,6 @@ class SignInPage extends StatefulWidget {
   void Function()? _onError;
   final Widget errorDisplay;
 
-  @override
-  State<SignInPage> createState() => _SignInPageState();
-}
-
-class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
@@ -59,7 +53,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                   SizedBox(height: 25),
-                  widget.errorDisplay,
+                  errorDisplay,
                   SizedBox(height: 25),
                   ElevatedButton(
                     style: ButtonStyle(
@@ -74,7 +68,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     onPressed: () {
-                      widget._onError?.call();
+                      _onError?.call();
                     },
                     child: Text(
                       "Sign In",

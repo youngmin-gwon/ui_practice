@@ -7,7 +7,6 @@ import 'package:animation_practice/milk_glass/milk_glass_screen.dart';
 import 'package:animation_practice/page_indicator/page_indicator_example.dart';
 import 'package:animation_practice/practice/practice_home.dart';
 import 'package:animation_practice/spring_animation/spring_challenge.dart';
-import 'package:animation_practice/staggered_animation/stagger_demo_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,15 +20,6 @@ class HomePage extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                const SizedBox(height: 12),
-                ElevatedButton(
-                  onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => StaggerDemo(),
-                    ),
-                  ),
-                  child: const Text("Staggered Animation"),
-                ),
                 const SizedBox(height: 12),
                 ElevatedButton(
                   onPressed: () => Navigator.of(context).push(

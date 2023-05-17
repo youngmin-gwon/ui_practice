@@ -35,7 +35,6 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.teal,
-        accentColor: Colors.tealAccent,
       ),
       title: 'Green Thumbs',
       home: HomePage(),
